@@ -121,6 +121,109 @@ body {
     border-radius: 2px;
 }
 
+/* ================= PROJETOS (GRID & CARDS) ================= */
+
+.grid { 
+    display: grid; 
+    gap: 30px; 
+    max-width: 1200px; 
+    margin: auto; 
+}
+
+/* Força 2 colunas em telas médias/grandes */
+@media (min-width: 768px) {
+    .grid { grid-template-columns: repeat(2, 1fr) !important; }
+}
+
+.project-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.project-image {
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #000;
+}
+
+.project-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    opacity: 0.8;
+}
+
+.project-card:hover .project-image img {
+    transform: scale(1.05);
+    opacity: 1;
+}
+
+.project-content {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+/* Links (GitHub e Demo) à direita do título */
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
+.project-links a {
+    color: var(--text);
+    font-size: 1.1rem;
+    transition: 0.3s;
+    opacity: 0.7;
+}
+
+.project-links a:hover {
+    color: var(--accent);
+    transform: translateY(-3px);
+    opacity: 1;
+}
+
+.project-techs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: auto; /* Joga as techs para o fundo do card */
+}
+
+.tech-item {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border);
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: 'Fira Code', monospace;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--text);
+}
+
+.project-card:hover {
+    border-color: var(--accent);
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0, 229, 255, 0.1);
+}
+
+/* Ajuste Light Mode */
+body.light .tech-item {
+    background: #f1f5f9;
+    color: #0f172a;
+}
+
 /* ================= EXPERIÊNCIA ================= */
 .xp { max-width: 850px; margin: 0 auto; text-align: left; }
 
@@ -234,73 +337,70 @@ body.light .xp-item:hover {
     transition: 0.3s;
 }
 
-/* ================= GITHUB CARDS (ALINHAMENTO PERFEITO) ================= */
+/* ================= GITHUB CARDS (PROPORÇÃO AJUSTADA) ================= */
 #github-content {
     display: grid !important;
-    grid-template-columns: repeat(3, 1fr) !important; 
-    gap: 25px;
+    /* Card 1 ocupa 0.7 partes, Gráficos ocupam 1.15 partes cada */
+    grid-template-columns: 0.7fr 1.15fr 1.15fr !important; 
+    gap: 20px;
     width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    align-items: stretch; /* Força os itens da grade a terem a mesma altura */
+    max-width: 1300px; /* Um pouco mais largo para os gráficos respirarem */
+    margin: 40px auto;
+    align-items: stretch;
 }
 
 .github-card-row {
     background: var(--card);
     border: 1px solid var(--border);
-    padding: 30px 25px;
-    border-radius: 12px;
+    padding: 25px; /* Reduzi um pouco o padding global */
+    border-radius: 16px;
     display: flex;
     flex-direction: column;
-    height: 450px; /* Definimos uma altura fixa para os TRÊS cards */
-    width: 100%;
+    height: 500px; /* Um pouco mais alto para o gráfico de rosca não espremer a legenda */
     transition: all 0.3s ease;
-    position: relative;
 }
 
-.github-card-row:hover {
-    border-color: var(--accent);
-    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
-}
-
-/* Títulos Padronizados */
-.github-card-title, .github-card-row h4 {
-    color: var(--accent) !important;
-    font-size: 13px;
-    font-weight: 700;
-    text-transform: uppercase;
-    text-align: center;
-    margin-bottom: 25px;
-    letter-spacing: 1.5px;
-    font-family: 'Fira Code', monospace;
-    flex-shrink: 0; /* Impede o título de achatar */
-}
-
-/* Card 1: Ajuste das linhas de status */
+/* Otimização dos Mini Cards (Card 1) */
 #github-basic-stats {
     display: flex;
     flex-direction: column;
+    gap: 12px;
+    height: 100%;
 }
 
-.github-stat-mini {
+.github-card {
+    background: rgba(30, 41, 59, 0.2); /* Mais sutil */
+    border: 1px solid var(--border);
+    padding: 15px;
+    border-radius: 12px;
+    flex: 1;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
     align-items: center;
-    padding: 18px 0; /* Aumentei o espaço para preencher o card alto */
-    border-bottom: 1px solid rgba(30, 41, 59, 0.5);
-    flex-grow: 1; /* Faz as linhas tentarem ocupar o espaço disponível */
+    justify-content: center;
 }
 
-.github-stat-mini:last-child {
-    border-bottom: none;
-}
+/* Ajuste das fontes nos mini-cards para não "brigarem" com os gráficos */
+.github-card span { font-size: 1.6rem; }
+.github-card i { font-size: 1.1rem; }
+.github-card p { font-size: 9px; }
 
-/* Cards 2 e 3: Ajuste dos Gráficos */
+/* Ajuste nos Gráficos (Cards 2 e 3) */
 .chart-container {
-    flex-grow: 1; /* Faz o gráfico ocupar todo o espaço restante do card de 450px */
-    position: relative;
-    width: 100%;
-    min-height: 0; /* Bugfix para o Chart.js não estourar o container */
+    flex: 1;
+    padding: 10px; /* Respiro interno para o gráfico não encostar na borda */
+}
+
+/* Cor de destaque para o novo card de Commits */
+.github-card .fa-terminal {
+    color: #6db33f; /* Verde Spring Boot para dar identidade ao seu foco Java */
+}
+
+/* Deixa o número em destaque */
+.github-card span {
+    font-family: 'Fira Code', monospace; /* Estilo terminal para os números */
+    font-weight: 800;
+    color: #fff;
 }
 
 /* ================= SEÇÃO CONTATO (ÍCONES MAIORES) ================= */
