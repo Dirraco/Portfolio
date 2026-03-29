@@ -1,0 +1,464 @@
+/* ================= RESET & VARIÁVEIS ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #050509;
+    --text: #f8fafc;
+    --accent: #00e5ff; 
+    --card: #0d1117;
+    --border: #1e293b;
+    --card-hover: rgba(0, 229, 255, 0.05);
+}
+
+/* ESTILO DO LIGHT MODE */
+body.light {
+    --bg: #f8fafc;
+    --text: #0f172a;
+    --card: #ffffff;
+    --border: #e2e8f0;
+    --card-hover: rgba(0, 229, 255, 0.1);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    transition: background 0.3s, color 0.3s; /* Suaviza a troca */
+    overflow-x: hidden;
+}
+
+/* ================= COMPONENTES FIXOS ================= */
+#loader {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: black;
+    color: var(--accent);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    font-family: 'Fira Code', monospace;
+}
+
+#tsparticles {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+.nav, .hero, .section {
+    position: relative;
+    z-index: 10;
+}
+
+/* ================= NAVEGAÇÃO ================= */
+.nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 25px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.btn {
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    padding: 8px 20px;
+    border-radius: 6px;
+    transition: 0.3s;
+    font-family: 'Fira Code', monospace;
+    font-size: 14px;
+    background: transparent;
+}
+
+.btn:hover {
+    background: var(--accent);
+    color: #000;
+}
+
+/* ================= HERO ================= */
+.hero { text-align: center; padding: 120px 20px; }
+.glitch-name {
+    font-size: clamp(40px, 8vw, 75px);
+    font-weight: 900;
+    position: relative;
+    color: var(--text);
+    display: inline-block;
+    animation: entrance 1s ease-out;
+}
+
+@keyframes entrance {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ================= SEÇÕES ================= */
+.section { padding: 80px 20px; text-align: center; }
+
+.section h2 {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 50px;
+    position: relative;
+    display: inline-block;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+}
+
+/* ================= EXPERIÊNCIA ================= */
+.xp { max-width: 850px; margin: 0 auto; text-align: left; }
+
+.xp-item {
+    background: var(--card);
+    margin-bottom: 20px;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--border);
+    transition: 0.4s;
+}
+
+/* No Dark Mode (Padrão): Título normal, apenas ÍCONE azul */
+.xp-item h3 { 
+    color: var(--text); /* Texto normal (branco/acinzentado) */
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+
+.xp-item i { 
+    color: var(--accent) !important; /* APENAS ÍCONES EM AZUL */
+}
+
+.tag-xp { 
+    color: var(--accent); 
+    background: rgba(0, 229, 255, 0.1); 
+    padding: 4px 12px; 
+    border-radius: 4px; 
+    font-size: 11px;
+    font-family: 'Fira Code', monospace;
+}
+
+.xp-item:hover {
+    border-left: 4px solid var(--accent);
+    background: var(--card-hover);
+}
+
+/* ================= AJUSTE EXPERIÊNCIA (LIGHT MODE) ================= */
+/* No Light Mode: Removemos todo o azul para ficar 100% sóbrio */
+body.light .xp-item h3, 
+body.light .xp-item i { 
+    color: var(--text) !important; /* Tudo cor de texto escura */
+}
+
+body.light .tag-xp {
+    background: #e2e8f0; 
+    color: #475569;
+    border: 1px solid #cbd5e1;
+}
+
+body.light .xp-item:hover {
+    border-left: 4px solid #64748b;
+    background: #f1f5f9;
+}
+
+/* ================= SKILLS (CORRIGIDO) ================= */
+.skills { 
+    display: flex; 
+    flex-wrap: wrap; 
+    justify-content: center; 
+    gap: 12px; 
+    max-width: 1000px; 
+    margin: 40px auto; 
+    padding: 0 20px;
+}
+
+.skill {
+    background: var(--card);
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 500;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    color: var(--text);
+    white-space: nowrap;
+}
+
+.skill i {
+    font-size: 1.2rem;
+    /* As cores individuais dos ícones são definidas no JS ou você pode forçar var(--accent) aqui */
+}
+
+.skill:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(0, 229, 255, 0.2);
+    border-color: var(--accent);
+    color: var(--accent);
+}
+
+/* ================= CORES DOS ÍCONES DE SKILLS ================= */
+.skill i.fa-java { color: #f89820; }          /* Laranja Java */
+.skill i.fa-leaf { color: #6db33f; }          /* Verde Spring */
+.skill i.fa-react { color: #61dafb; }         /* Azul React */
+.skill i.fa-js { color: #f7df1e; }            /* Amarelo JS */
+.skill i.fa-code { color: #3178c6; }          /* Azul TypeScript */
+.skill i.fa-database { color: #00758f; }      /* Azul MySQL */
+.skill i.fa-git-alt { color: #f05032; }       /* Vermelho Git */
+.skill i.fa-bootstrap { color: #7952b3; }     /* Roxo Bootstrap */
+.skill i.fa-php { color: #777bb4; }           /* Roxo PHP */
+.skill i.fa-users-gear { color: #ff9900; }    /* Laranja Scrum/Agile */
+
+/* Efeito de brilho no hover para cada ícone */
+.skill:hover i {
+    filter: drop-shadow(0 0 5px currentColor);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+/* ================= GITHUB CARDS (ALINHAMENTO PERFEITO) ================= */
+#github-content {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important; 
+    gap: 25px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch; /* Força os itens da grade a terem a mesma altura */
+}
+
+.github-card-row {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 30px 25px;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    height: 450px; /* Definimos uma altura fixa para os TRÊS cards */
+    width: 100%;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.github-card-row:hover {
+    border-color: var(--accent);
+    box-shadow: 0 10px 30px rgba(0, 229, 255, 0.1);
+}
+
+/* Títulos Padronizados */
+.github-card-title, .github-card-row h4 {
+    color: var(--accent) !important;
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 25px;
+    letter-spacing: 1.5px;
+    font-family: 'Fira Code', monospace;
+    flex-shrink: 0; /* Impede o título de achatar */
+}
+
+/* Card 1: Ajuste das linhas de status */
+#github-basic-stats {
+    display: flex;
+    flex-direction: column;
+}
+
+.github-stat-mini {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 0; /* Aumentei o espaço para preencher o card alto */
+    border-bottom: 1px solid rgba(30, 41, 59, 0.5);
+    flex-grow: 1; /* Faz as linhas tentarem ocupar o espaço disponível */
+}
+
+.github-stat-mini:last-child {
+    border-bottom: none;
+}
+
+/* Cards 2 e 3: Ajuste dos Gráficos */
+.chart-container {
+    flex-grow: 1; /* Faz o gráfico ocupar todo o espaço restante do card de 450px */
+    position: relative;
+    width: 100%;
+    min-height: 0; /* Bugfix para o Chart.js não estourar o container */
+}
+
+/* ================= SEÇÃO CONTATO (ÍCONES MAIORES) ================= */
+.contact-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px; /* Espaço entre os ícones */
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.contact-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    color: var(--text); /* Cor padrão do texto */
+}
+
+.contact-icon i {
+    font-size: 2.5rem; /* TAMANHO DOS ÍCONES */
+    color: var(--accent); /* Ícones sempre em azul no Dark Mode */
+    transition: all 0.3s ease;
+}
+
+.contact-icon span {
+    font-family: 'Fira Code', monospace;
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* Efeito de Hover no Dark Mode */
+.contact-icon:hover i {
+    transform: translateY(-8px);
+    filter: drop-shadow(0 0 10px var(--accent));
+}
+
+.contact-icon:hover span {
+    opacity: 1;
+    color: var(--accent);
+}
+
+/* ================= AJUSTE CONTATO (LIGHT MODE) ================= */
+body.light .contact-icon i {
+    color: var(--text) !important; /* Ícones pretos/escuros no Light Mode */
+}
+
+body.light .contact-icon:hover i {
+    filter: none; /* Remove o brilho neon no Light Mode */
+    color: #64748b !important; /* Cor de destaque mais sóbria no hover */
+}
+
+body.light .contact-icon:hover span {
+    color: var(--text);
+}
+
+/* Responsividade */
+@media (max-width: 1024px) {
+    #github-content {
+        grid-template-columns: 1fr !important;
+    }
+    .github-card-row {
+        height: auto;
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .grid, #github-content { grid-template-columns: 1fr; }
+}
+
+/* Moldura para a foto (Hero e Sobre Mim) */
+.avatar-frame {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    margin: 0 auto 30px auto;
+    position: relative;
+    overflow: hidden;
+    border: 3px solid var(--border);
+    transition: all 0.4s ease;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 20;
+}
+
+/* Tamanho maior específico para a seção Sobre Mim */
+.about-avatar {
+    width: 250px;
+    height: 250px;
+}
+
+.avatar-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+/* Efeito de brilho apenas no Dark Mode (Padrão) */
+.avatar-frame:hover {
+    border-color: var(--accent);
+    box-shadow: 0 0 25px rgba(0, 229, 255, 0.4);
+    transform: translateY(-5px);
+}
+
+/* Ajuste para o Light Mode (Sóbrio) */
+body.light .avatar-frame {
+    border-color: #cbd5e1;
+    box-shadow: none;
+}
+
+body.light .avatar-frame:hover {
+    border-color: #64748b;
+}
+
+/* Ajuste Mobile */
+@media (max-width: 768px) {
+    .about-avatar { width: 180px; height: 180px; }
+    .avatar-frame { width: 150px; height: 150px; }
+}
+
+/* ================= CORREÇÃO SOBRE MIM (LIGHT MODE) ================= */
+
+/* Garante que o texto principal fique escuro no Light Mode */
+body.light #about p {
+    color: #1e293b !important; /* Um cinza bem escuro, quase preto */
+}
+
+/* Garante que os destaques (strong) fiquem pretos no Light Mode */
+body.light #about strong, 
+body.light #about h3 {
+    color: #0f172a !important; /* Preto sólido para contraste máximo */
+}
+
+/* Ajuste do subtítulo "Sobre Mim" no Light Mode */
+body.light #about h2.text-accent {
+    color: #475569 !important; /* Cinza sóbrio para o título pequeno */
+    filter: none; /* Remove qualquer brilho que tenha sobrado */
+}
+
+/* Cursor de digitação estilo terminal */
+#typewriter-name::after {
+    content: '|';
+    margin-left: 5px;
+    color: var(--accent);
+    animation: blink-cursor 0.8s infinite;
+}
+
+@keyframes blink-cursor {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Remove o cursor quando a animação termina */
+.glitch-name[data-text] #typewriter-name::after {
+    display: none;
+}

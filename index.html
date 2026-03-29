@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+
+<html lang="pt-BR">
+
+<head>
+  <!-- ================= CONFIGURAÇÕES BÁSICAS ================= -->
+  <meta charset="UTF-8"> <!-- Define codificação para suportar acentos -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Responsividade -->
+
+
+  <!-- Título exibido na aba do navegador -->
+  <title>Diego Santos | Java Engineer</title>
+
+  <!-- ================= BIBLIOTECAS EXTERNAS ================= -->
+
+  <!-- TailwindCSS (framework utilitário para estilização rápida) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- AOS (Animate On Scroll - animações ao rolar a página) -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+  <!-- Google Fonts (tipografia do site) -->
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&family=Inter:wght@400;700&display=swap"
+    rel="stylesheet">
+
+  <!-- Font Awesome (ícones) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Chart.js (gráficos do GitHub) -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- CSS principal do projeto -->
+  <link rel="stylesheet" href="style.css">
+
+
+</head>
+
+<body>
+
+  <!-- ================= LOADER (TELA INICIAL) ================= -->
+
+  <!-- Exibido enquanto o site carrega -->
+
+  <div id="loader">Booting Diego System...</div>
+
+  <!-- ================= FUNDO DE PARTÍCULAS ================= -->
+
+  <!-- Canvas onde a biblioteca tsparticles renderiza o background animado -->
+
+  <div id="tsparticles"></div>
+
+  <!-- ================= NAVBAR ================= -->
+
+  <nav class="nav">
+    <!-- Botão para download do currículo -->
+    <a href="cv.pdf" download class="btn">Baixar CV</a>
+
+
+    <!-- Botão para alternar Dark/Light Mode -->
+    <button id="themeToggle" class="btn">🌙</button>
+
+
+  </nav>
+
+  <!-- ================= HERO (APRESENTAÇÃO PRINCIPAL) ================= -->
+
+  <section class="hero">
+
+    <!-- Texto inicial com animação AOS -->
+    <p class="mono text-accent" data-aos="fade-down">
+      Hello World. Eu sou
+    </p>
+
+    <!-- Nome com efeito de digitação (controlado pelo JS) -->
+    <h1 class="glitch-name">
+      <span id="typewriter-name"></span>
+    </h1>
+
+    <!-- Texto dinâmico (Typed.js) -->
+    <h2>
+      <span id="typed"></span>
+    </h2>
+
+
+  </section>
+
+  <!-- ================= SOBRE MIM ================= -->
+
+  <section id="about" class="section">
+    <div class="max-w-5xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
+
+
+      <!-- FOTO / AVATAR -->
+      <div class="md:w-1/3 flex justify-center" data-aos="fade-right">
+        <div class="avatar-frame about-avatar">
+          <img src="img/perfil.jpeg" alt="Diego - Desenvolvedor Java" class="avatar-img">
+        </div>
+      </div>
+
+      <!-- TEXTO SOBRE -->
+      <div class="md:w-2/3 text-left" data-aos="fade-left">
+
+        <!-- Subtítulo -->
+        <h2 class="text-accent mono mb-4 tracking-widest text-sm">
+          Sobre Mim
+        </h2>
+        <!-- Cargo principal -->
+        <h3 class="text-3xl font-bold mb-6 text-white">
+          Desenvolvedor Back-end Java
+        </h3>
+
+        <!-- Parágrafo 1 -->
+        <p class="text-gray-400 text-lg leading-relaxed mb-4">
+          Formado em <strong class="text-white">Análise e Desenvolvimento de Sistemas</strong> pelo UDF. Atualmente,
+          estou me especializando em <strong class="text-white">Desenvolvimento Back-End Java</strong> pela EBAC.
+        </p>
+
+        <!-- Parágrafo 2 -->
+        <p class="text-gray-400 text-lg leading-relaxed mb-4">
+          Tenho foco na criação de sistemas, APIs e aplicações escaláveis. Durante minha trajetória, adquiri experiência
+          com desenvolvimento web, versionamento de código e trabalho em equipe com metodologias ágeis.
+        </p>
+
+        <!-- Parágrafo 3 -->
+        <p class="text-gray-400 text-lg leading-relaxed">
+          Busco evolução constante, aprofundando conhecimentos em <strong class="text-white">POO</strong> e no
+          ecossistema <strong class="text-white">Spring Boot</strong> para entregar soluções robustas e eficientes.
+        </p>
+
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- ================= EXPERIÊNCIA PROFISSIONAL ================= -->
+
+  <section id="experience" class="section">
+
+
+    <!-- Título -->
+    <h2 data-aos="fade-up">Experiência Profissional</h2>
+
+    <div class="xp">
+
+      <!-- ITEM 1 -->
+      <div class="xp-item" data-aos="fade-right">
+        <div class="flex items-center gap-4 mb-4">
+          <i class="fa-solid fa-building-columns text-3xl text-accent"></i>
+          <div>
+            <h3 class="text-white font-bold">Ministério do Desenvolvimento Agrário - MDA</h3>
+            <span class="tag-xp">JUL/2024 - ATUAL</span>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm">
+          Apoio Administrativo de Nível Superior. Suporte operacional em eventos institucionais e coordenação logística.
+        </p>
+      </div>
+
+      <!-- ITEM 2 -->
+      <div class="xp-item" data-aos="fade-right">
+        <div class="flex items-center gap-4 mb-4">
+          <i class="fa-solid fa-code text-3xl text-accent"></i>
+          <div>
+            <h3 class="text-white font-bold">OTD - Only Tech & Design</h3>
+            <span class="tag-xp">JUN/2022 - DEZ/2024</span>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm">
+          Desenvolvedor Front-End. Criação de Dashboards e Landing Pages com React e metodologias ágeis.
+        </p>
+      </div>
+
+      <!-- ITEM 3 -->
+      <div class="xp-item" data-aos="fade-right">
+        <div class="flex items-center gap-4 mb-4">
+          <i class="fa-solid fa-microchip text-3xl text-accent"></i>
+          <div>
+            <h3 class="text-white font-bold">BW Certificados e Sistemas</h3>
+            <span class="tag-xp">FEV/2024 - JUN/2024</span>
+          </div>
+        </div>
+        <p class="text-gray-400 text-sm">
+          Suporte de T.I. Helpdesk, instalação de sistemas e suporte técnico em notas fiscais eletrônicas.
+        </p>
+      </div>
+
+    </div>
+
+
+  </section>
+
+  <!-- ================= SKILLS ================= -->
+
+  <section id="skills" class="section">
+    <h2 data-aos="zoom-in">Skills</h2>
+    <div class="skills">
+      <div class="skill"><i class="fa-brands fa-java text-orange-500"></i> Java</div>
+      <div class="skill"><i class="fa-solid fa-leaf text-green-500"></i> Spring Boot</div>
+      <div class="skill"><i class="fa-brands fa-react text-blue-400"></i> React</div>
+      <div class="skill"><i class="fa-brands fa-js text-yellow-400"></i> JavaScript</div>
+      <div class="skill"><i class="fa-solid fa-database text-blue-400"></i> MySQL</div>
+      <div class="skill"><i class="fa-brands fa-git-alt text-orange-600"></i> Git</div>
+    </div>
+
+  </section>
+
+  <!-- ================= GITHUB ================= -->
+
+  <section id="github" class="section">
+    <div class="max-w-7xl mx-auto px-4">
+
+
+      <h2 data-aos="zoom-in">GitHub Status</h2>
+
+      <!-- Tela de loading -->
+      <div id="github-loading" class="text-accent mono">
+        Carregando dados...
+      </div>
+
+      <!-- Conteúdo carregado via JS -->
+      <div id="github-content" class="hidden grid grid-cols-1 lg:grid-cols-3 gap-6 w-full max-w-full">
+
+        <!-- Estatísticas básicas -->
+        <div id="github-basic-stats" class="github-card-row" data-aos="fade-up"></div>
+
+        <!-- Gráfico de commits -->
+        <div class="github-card-row" data-aos="fade-up" data-aos-delay="100">
+          <div id="title-commits"></div>
+          <div class="chart-container">
+            <canvas id="commitsChart"></canvas>
+          </div>
+        </div>
+
+        <!-- Gráfico de linguagens -->
+        <div class="github-card-row" data-aos="fade-up" data-aos-delay="200">
+          <div id="title-languages"></div>
+          <div class="chart-container">
+            <canvas id="languagesChart"></canvas>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </section>
+
+  <!-- ================= CONTATOS ================= -->
+
+  <section id="contact" class="section">
+
+
+    <h2 data-aos="zoom-in">Contatos</h2>
+
+    <div class="contact-container" data-aos="fade-up">
+
+      <!-- Email -->
+      <a href="mailto:deigoo.snts@outlook.com" class="contact-icon">
+        <i class="fa-solid fa-envelope"></i>
+        <span>E-mail</span>
+      </a>
+
+      <!-- LinkedIn -->
+      <a href="https://www.linkedin.com/in/diego-snts/" target="_blank" class="contact-icon">
+        <i class="fa-brands fa-linkedin"></i>
+        <span>LinkedIn</span>
+      </a>
+
+      <!-- GitHub -->
+      <a href="https://github.com/Dirraco" target="_blank" class="contact-icon">
+        <i class="fa-brands fa-github"></i>
+        <span>GitHub</span>
+      </a>
+
+      <!-- WhatsApp -->
+      <a href="https://wa.me/5561999185463" target="_blank" class="contact-icon">
+        <i class="fa-brands fa-whatsapp"></i>
+        <span>WhatsApp</span>
+      </a>
+
+    </div>
+
+
+  </section>
+
+  <!-- ================= SCRIPTS ================= -->
+
+  <!-- Animações -->
+
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+  <!-- Efeito de digitação -->
+
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+
+  <!-- Efeito 3D -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+
+  <!-- Partículas -->
+
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+
+  <!-- Script principal -->
+
+  <script src="script.js"></script>
+
+</body>
+
+</html>
+
+</section>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.2/vanilla-tilt.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
+<script src="script.js"></script>
+
+<!-- ================= RODAPÉ ================= -->
+<footer style="text-align:center; padding:20px; opacity:0.6;">
+  © 2026 Diego Santos - MIT License
+</footer>
+
+</body>
+
+</html>
